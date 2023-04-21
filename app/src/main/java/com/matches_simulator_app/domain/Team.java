@@ -1,31 +1,37 @@
 package com.matches_simulator_app.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Team {
-    private String nome;
-    private int forca;
-    private String imagem;
+    // Usando o SerializedName, passamos o nome que o campo tem na nossa API
+    @SerializedName("nome")
+    private String name;
+    @SerializedName("forca")
+    private int force;
+    @SerializedName("imagem")
+    private String image;
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getForca() {
-        return forca;
+    public int getForce() {
+        return force;
     }
 
-    public void setForca(int forca) {
-        this.forca = forca;
+    public void setForce(int force) {
+        this.force = force;
     }
 
-    public String getImagem() {
-        return imagem;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

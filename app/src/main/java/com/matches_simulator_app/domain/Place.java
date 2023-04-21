@@ -1,19 +1,24 @@
 package com.matches_simulator_app.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Place {
-    private String nome;
+    // Usando o SerializedName, passamos o nome que o campo tem na nossa API
+    @SerializedName("nome")
+    private String name;
+    @SerializedName("imagem")
     private String image;
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setImage(String image) {
