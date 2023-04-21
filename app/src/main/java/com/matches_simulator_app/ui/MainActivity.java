@@ -5,11 +5,14 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.matches_simulator_app.R;
 import com.matches_simulator_app.data.MatchesApi;
 import com.matches_simulator_app.databinding.ActivityMainBinding;
 import com.matches_simulator_app.domain.Match;
+import com.matches_simulator_app.ui.adapter.MatchesAdapter;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity{
 
     private ActivityMainBinding binding;
     private MatchesApi matchesApi;
+    private RecyclerView.Adapter MatchesAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,11 +64,17 @@ public class MainActivity extends AppCompatActivity{
 
     private void setupMatchsList() {
         //TODO: listar as partidas consumindo nossa API REST
+        binding.rvJogos.setHasFixedSize(true);
+        binding.rvJogos.setLayoutManager(new LinearLayoutManager(this));
+
+
         matchesApi.getMatch().enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
                 if (response.isSuccessful()) {
                     List<Match> matches = response.body();
+                    MatchesAdapter = new MatchesAdapter(matches);
+                    binding.rvJogos.setAdapter(MatchesAdapter);
                 } else {
                     showErroMessage();
                 }
