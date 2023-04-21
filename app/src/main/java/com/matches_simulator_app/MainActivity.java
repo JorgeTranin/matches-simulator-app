@@ -1,8 +1,10 @@
 package com.matches_simulator_app;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.matches_simulator_app.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity{
