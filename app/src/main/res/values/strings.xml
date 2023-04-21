@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">matches-simulator-app</string>
     <string name="simula_o_do_jogo">Simulação do jogo</string>
+    <string name="time_a">Time A</string>
+    <string name="time_b">Time B</string>
+    <string name="imagem_time_a">Imagem Time A</string>
+    <string name="imagem_time_b">Imagem Time B</string>
+    <string name="x">X</string>
+    <string name="Placar_Times">0</string>
 </resources>
