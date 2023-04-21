@@ -1,8 +1,8 @@
-package com.matches_simulator_app
+package com.matches_simulator_app.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import com.matches_simulator_app.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {

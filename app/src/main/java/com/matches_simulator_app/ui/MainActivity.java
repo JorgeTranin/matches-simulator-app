@@ -1,4 +1,4 @@
-package com.matches_simulator_app;
+package com.matches_simulator_app.ui;
 
 import android.os.Bundle;
 
@@ -17,7 +17,22 @@ public class MainActivity extends AppCompatActivity{
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setupMatchsList();
+        setupMatchsRefresh();
+        setupMatchsFloatingActionButtom();
 
 
+    }
+
+    private void setupMatchsFloatingActionButtom() {
+        //TODO: Criar evento de click de simulação de partidas
+    }
+
+    private void setupMatchsRefresh() {
+        //TODO: Fazer a atualização das partidas no arrastar do Swipe
+    }
+
+    private void setupMatchsList() {
+        //TODO: listar as partidas consumindo nossa API REST
     }
 }
