@@ -17,6 +17,10 @@ import java.util.List;
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHolder> {
     private List<Match> matches;
 
+    public List<Match> getMatches() {
+        return matches;
+    }
+
     public MatchesAdapter(List<Match> matches) {
         this.matches = matches;
     }
@@ -44,6 +48,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
 
         ImageView imageTeamB = (ImageView) holder.binding.imageTeamB;
         Glide.with(context).load(match.getAwayTeam().getImage()).into(imageTeamB);
+
+        //Set Score dos Times
+        holder.binding.scoreTeamA.setText(String.valueOf(match.getHomeTeam().getScore()));
+        holder.binding.scoreTeamB.setText(String.valueOf(match.getAwayTeam().getScore()));
 
 
     }

@@ -11,6 +11,16 @@ public class Team {
     @SerializedName("imagem")
     private String image;
 
+    private int Score;
+
+    public int getScore() {
+        return Score;
+    }
+
+    public void setScore(int score) {
+        Score = score;
+    }
+
     public String getName() {
         return name;
     }

@@ -1,22 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llClickCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_view_bg"
+    android:elevation="8dp"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:layout_margin="16dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp"
+    android:focusable="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_team_a"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_view_bg"
+        android:layout_weight="1"
+        android:background="@drawable/card_view_bg"
+        android:clickable="true"
         android:elevation="8dp"
-        android:orientation="horizontal"
-        android:layout_margin="16dp"
-        android:padding="16dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_team_a"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/card_view_bg"
-            android:clickable="true"
-            android:elevation="8dp"
-            android:focusable="true"
+        android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="16dp">
 

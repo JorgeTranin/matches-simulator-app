@@ -8,7 +8,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.matches_simulator_app.R;
 import com.matches_simulator_app.data.MatchesApi;
@@ -17,6 +16,7 @@ import com.matches_simulator_app.domain.Match;
 import com.matches_simulator_app.ui.adapter.MatchesAdapter;
 
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity{
 
     private ActivityMainBinding binding;
     private MatchesApi matchesApi;
-    private RecyclerView.Adapter MatchesAdapter;
+    private MatchesAdapter matchesAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity{
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         matchesApi = retrofit.create(MatchesApi.class);
+        //----------------------------------------------------Metodo para gerar placaras aleatorios para as partidas-------------------------------------------------------
     }
-
     private void setupMatchsFloatingActionButtom() {
         //TODO: Criar evento de click de simulação de partidas
         binding.fabRandom.setOnClickListener(view -> {
@@ -61,6 +61,20 @@ public class MainActivity extends AppCompatActivity{
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     //TODO implementar a geração de placares
+                    Random random = new Random();
+                    for (int i = 0; i < matchesAdapter.getItemCount(); i++) {
+                        Match match = matchesAdapter.getMatches().get(i);
+
+
+                        int timeA = random.nextInt(match.getHomeTeam().getForce() + 1);
+                        int timeB = random.nextInt(match.getAwayTeam().getForce() + 1);
+
+                        match.getHomeTeam().setScore(timeA);
+                        match.getAwayTeam().setScore(timeB);
+                        // Notifica o adapter que Houve mudança no item nesta posição
+                        matchesAdapter.notifyItemChanged(i);
+                    }
+
 
                 }
             });
@@ -91,8 +105,8 @@ public class MainActivity extends AppCompatActivity{
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
                 if (response.isSuccessful()) {
                     List<Match> matches = response.body();
-                    MatchesAdapter = new MatchesAdapter(matches);
-                    binding.rvJogos.setAdapter(MatchesAdapter);
+                    matchesAdapter = new MatchesAdapter(matches);
+                    binding.rvJogos.setAdapter(matchesAdapter);
                 } else {
                     showErroMessage();
                 }
