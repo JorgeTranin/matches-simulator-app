@@ -51,6 +51,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         ImageView imageTeamB = (ImageView) holder.binding.imageTeamB;
         Glide.with(context).load(match.getAwayTeam().getImage()).into(imageTeamB);
 
+        holder.binding.rbHomeTeamStars.setRating(match.getHomeTeam().getForce());
+        holder.binding.rbAwayTeamStars.setRating(match.getAwayTeam().getForce());
+
         //Set Score dos Times
         if (match.getHomeTeam().getScore() != -1) {
             holder.binding.scoreTeamA.setText(String.valueOf(match.getHomeTeam().getScore()));

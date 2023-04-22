@@ -42,9 +42,16 @@ class DetailActivity : AppCompatActivity() {
             Glide.with(this).load(match.place.image).into(binding.ivPlace)
 
 
-            //Set placar Match
-            binding.tvHomeTeamScore.text = match.homeTeam.score.toString()
-            binding.tvAwayTeamScore.text = match.awayTeam.score.toString()
+
+
+            binding.rbHomeTeamStars.rating = match.homeTeam.force.toFloat()
+            binding.rbAwayTeamStars.rating = match.awayTeam.force.toFloat()
+
+            if (match.homeTeam.score != -1){
+                //Set placar Match
+                binding.tvHomeTeamScore.text = match.homeTeam.score.toString()
+                binding.tvAwayTeamScore.text = match.awayTeam.score.toString()
+            }
 
 
         }
