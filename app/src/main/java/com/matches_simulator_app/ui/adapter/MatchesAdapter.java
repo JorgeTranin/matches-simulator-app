@@ -1,11 +1,14 @@
 package com.matches_simulator_app.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.matches_simulator_app.databinding.ItemJogosBinding;
 import com.matches_simulator_app.domain.Match;
 
@@ -21,19 +24,27 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemJogosBinding binding = ItemJogosBinding.inflate(LayoutInflater.from(parent.getContext()));
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemJogosBinding binding = ItemJogosBinding.inflate(layoutInflater, parent, false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Match match = matches.get(position);
+        Context context = holder.itemView.getContext();
 
         //SetNomes dos Times
         holder.binding.nameTeamA.setText(match.getHomeTeam().getName());
         holder.binding.nameTeamB.setText(match.getAwayTeam().getName());
 
         //Set Imagem Times
+        ImageView imageTeamA = (ImageView) holder.binding.imageTeamA;
+        Glide.with(context).load(match.getHomeTeam().getImage()).into(imageTeamA);
+
+        ImageView imageTeamB = (ImageView) holder.binding.imageTeamB;
+        Glide.with(context).load(match.getAwayTeam().getImage()).into(imageTeamB);
+
 
     }
 

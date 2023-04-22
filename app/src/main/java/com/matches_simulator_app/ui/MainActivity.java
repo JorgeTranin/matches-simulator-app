@@ -1,5 +1,7 @@
 package com.matches_simulator_app.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -54,12 +56,22 @@ public class MainActivity extends AppCompatActivity{
 
     private void setupMatchsFloatingActionButtom() {
         //TODO: Criar evento de click de simulação de partidas
+        binding.fabRandom.setOnClickListener(view -> {
+            view.animate().rotationBy(360).setDuration(500).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    //TODO implementar a geração de placares
+
+                }
+            });
+        });
 
     }
 
-
+    //--------------------------------------------------------------------Metodo para recarregar a lista de partidas-------------------------------------------------------
     private void setupMatchsRefresh() {
         //TODO: Fazer a atualização das partidas no arrastar do Swipe
+        binding.swiperefreshlayout.setOnRefreshListener(this::findMatchesFromApi);
     }
 
     private void setupMatchsList() {
@@ -67,7 +79,13 @@ public class MainActivity extends AppCompatActivity{
         binding.rvJogos.setHasFixedSize(true);
         binding.rvJogos.setLayoutManager(new LinearLayoutManager(this));
 
+        findMatchesFromApi();
 
+    }
+
+    //--------------------------------------------------------------------Metodo para consumir a API do GitHubPages-------------------------------------------------------
+    private void findMatchesFromApi() {
+        binding.swiperefreshlayout.setRefreshing(true);
         matchesApi.getMatch().enqueue(new Callback<List<Match>>() {
             @Override
             public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
@@ -78,15 +96,18 @@ public class MainActivity extends AppCompatActivity{
                 } else {
                     showErroMessage();
                 }
+                binding.swiperefreshlayout.setRefreshing(false);
             }
 
             @Override
             public void onFailure(Call<List<Match>> call, Throwable t) {
                 showErroMessage();
+                binding.swiperefreshlayout.setRefreshing(false);
             }
         });
     }
 
+    //--------------------------------------------------------------------Metodo para mensagem de erro renérica--------------------------------------------------------------
     private void showErroMessage() {
         Toast.makeText(this, R.string.ErroAPI, Toast.LENGTH_LONG).show();
     }
