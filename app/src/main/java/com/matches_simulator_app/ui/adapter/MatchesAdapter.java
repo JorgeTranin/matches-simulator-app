@@ -1,6 +1,7 @@
 package com.matches_simulator_app.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.matches_simulator_app.databinding.ItemJogosBinding;
 import com.matches_simulator_app.domain.Match;
+import com.matches_simulator_app.ui.DetailActivity;
 
 import java.util.List;
 
@@ -50,9 +52,18 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         Glide.with(context).load(match.getAwayTeam().getImage()).into(imageTeamB);
 
         //Set Score dos Times
-        holder.binding.scoreTeamA.setText(String.valueOf(match.getHomeTeam().getScore()));
-        holder.binding.scoreTeamB.setText(String.valueOf(match.getAwayTeam().getScore()));
+        if (match.getHomeTeam().getScore() != -1) {
+            holder.binding.scoreTeamA.setText(String.valueOf(match.getHomeTeam().getScore()));
+        }
+        if (match.getAwayTeam().getScore() != -1) {
+            holder.binding.scoreTeamB.setText(String.valueOf(match.getAwayTeam().getScore()));
+        }
+        holder.itemView.setOnClickListener(View -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra(DetailActivity.Extras.MATCH, match);
+            context.startActivity(intent);
 
+        });
 
     }
 

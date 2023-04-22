@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity{
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         setupHttpClient();
         setupMatchsList();
         setupMatchsRefresh();
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
+
 
     private void setupHttpClient() {
         //TODO Implementar a chamada retrofit
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     //TODO implementar a geração de placares
+
                     Random random = new Random();
                     for (int i = 0; i < matchesAdapter.getItemCount(); i++) {
                         Match match = matchesAdapter.getMatches().get(i);
@@ -77,8 +78,10 @@ public class MainActivity extends AppCompatActivity{
 
 
                 }
+
             });
         });
+
 
     }
 
@@ -125,4 +128,5 @@ public class MainActivity extends AppCompatActivity{
     private void showErroMessage() {
         Toast.makeText(this, R.string.ErroAPI, Toast.LENGTH_LONG).show();
     }
+
 }
