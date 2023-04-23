@@ -12,8 +12,8 @@ App Android Nativo de Simulação de Partidas. Este repositório foi organizado 
   - Glide
   - JetPack compose
   - Parcelable Google
-  - Versionamento com Git 
-  - UI e UX utilizando Material Designer
+  - Versionamento com Git
+  - Material Designer UI e UX
 
 
 1. Desenvolvimento Mobile Nativo Para Android

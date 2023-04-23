@@ -15,6 +15,7 @@ import com.matches_simulator_app.databinding.ActivityMainBinding;
 import com.matches_simulator_app.domain.Match;
 import com.matches_simulator_app.ui.adapter.MatchesAdapter;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity{
         //TODO: listar as partidas consumindo nossa API REST
         binding.rvJogos.setHasFixedSize(true);
         binding.rvJogos.setLayoutManager(new LinearLayoutManager(this));
-
+        matchesAdapter = new MatchesAdapter(Collections.emptyList());
+        binding.rvJogos.setAdapter(matchesAdapter);
         findMatchesFromApi();
 
     }
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public void onFailure(Call<List<Match>> call, Throwable t) {
+
                 showErroMessage();
                 binding.swiperefreshlayout.setRefreshing(false);
             }
